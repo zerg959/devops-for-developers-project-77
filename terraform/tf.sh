@@ -13,7 +13,7 @@ VAULT_FILE="$PROJECT_ROOT/ansible/vault_vars.yml"
 cd "$SCRIPT_DIR"
 
 # === ИЗВЛЕЧЕНИЕ СЕКРЕТОВ ===
-echo "🔓 Расшифровка секретов из Vault..."
+echo " Расшифровка секретов из Vault..."
 # Парсим всё за один раз
 VAULT_CONTENT=$(ansible-vault view "$VAULT_FILE")
 
@@ -23,10 +23,10 @@ S3_SECRET=$(echo "$VAULT_CONTENT" | awk -F'"' '/^s3_secret_key:/ {print $2}')
 
 # Проверка, что не пусто
 if [[ -z "$TOKEN" || -z "$S3_ACCESS" || -z "$S3_SECRET" ]]; then
-  echo "❌ Ошибка: не удалось извлечь секреты из $VAULT_FILE"
+  echo "Ошибка: не удалось извлечь секреты из $VAULT_FILE"
   exit 1
 fi
-echo "✅ Секреты готовы"
+echo "Секреты готовы"
 
 # === ЗАПУСК TERAFFORM ===
 COMMAND="${1:-}"
@@ -41,7 +41,7 @@ case "$COMMAND" in
       "$@"
     ;;
   plan|apply|destroy)
-    echo "🛠️ terraform $COMMAND..."
+    echo "terraform $COMMAND..."
     terraform "$COMMAND" \
       -var="timeweb_token=$TOKEN" \
       "$@"
