@@ -1,0 +1,9 @@
+# ansible/playbook.yml
+---
+- name: Deploy application
+  hosts: all
+  become: true
+  tasks:
+    - name: Placeholder task
+      debug:
+        msg: "Ansible playbook executed successfully"
