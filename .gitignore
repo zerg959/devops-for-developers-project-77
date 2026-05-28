@@ -1,0 +1,33 @@
+# === TERRAFORM ===
+# Локальный стейт (мы используем удаленный в S3, но страхуемся)
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Папка с провайдерами (скачивается при terraform init)
+.terraform/
+
+# === ANSIBLE VAULT ===
+*.decrypted
+*.tmp
+*.bak
+*~
+ansible/.vault-password.txt  # Если будете хранить пароль в файле
+
+# === S3 BACKEND ===
+backend.conf
+*.backend.tfvars
+
+# === ОБЩЕЕ ===
+# Иде и редакторы
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
